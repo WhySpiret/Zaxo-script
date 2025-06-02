@@ -31,7 +31,7 @@ Tab:AddSlider({
 
 local Tab = Window:MakeTab({
     Name = "Player",
-    Icon = "rbxassetid://8395747586",                 -- must use image asset id
+    Icon = "rbxassetid://8395621517",                 -- must use image asset id
     PremiumOnly = false
 })
 
@@ -49,12 +49,12 @@ Tab:AddSlider({
 
 Tab:AddSlider({
     Name = "Jump Power",
-    Min = 50,
-    Max = 200,
-    Default = 50,
+    Min = 5,
+    Max = 300,
+    Default = 300,
     Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
     Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        game.WorkSpace.Gravity = Value
     end
 })
 
