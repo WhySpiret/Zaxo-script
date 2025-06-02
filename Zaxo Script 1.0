@@ -41,22 +41,26 @@ Tab:AddSlider({
     Min = 36,                                              -- Minimum value for the slider
     Max = 150,                                            -- Maximum value for the slider
     Default = 36,                                         -- Default value of the slider
-    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
+    Color = Color3.fromRGB(0, 191, 255),
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
     end
 })
 
-Tab:AddSlider({
-    Name = "Jump Power",
-    Min = 5,
-    Max = 300,
-    Default = 300,
-    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
-    Callback = function(Value)
-        game.WorkSpace.Gravity = Value
+Tab:AddButton({
+    Name = "Jump - 50",
+    Color = Color3.fromRGB(180, 0, 0),
+    Callback = function(50)
+        game.WorkSpace.Gravity = 50
     end
 })
 
+Tab:AddButton({
+    Name = "Default Jump",
+    Color = Color3.fromRGB(180, 0, 0),
+    Callback = function(300)
+        game WorkSpace.Gravity = 300
+    end
+})
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
