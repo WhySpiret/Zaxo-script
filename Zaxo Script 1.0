@@ -31,7 +31,7 @@ Tab:AddSlider({
 
 local Tab = Window:MakeTab({
     Name = "Player",
-    Icon = "rbxassetid://",                 -- must use image asset id
+    Icon = "rbxassetid://8395747586",                 -- must use image asset id
     PremiumOnly = false
 })
 
