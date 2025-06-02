@@ -16,7 +16,7 @@ local Window = OrionLib:MakeWindow({
 		Subtitle = "Key System",
 		Note = "Join the discord (discord.gg/sirius)",
 		SaveKey = true,
-		Key = "ABCDEF"
+		Key = "Premium_key"
 	}
 })
 
