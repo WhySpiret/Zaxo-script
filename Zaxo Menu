@@ -29,17 +29,22 @@ Tab:AddSlider({
     end
 })
 
--- Adding a color picker for test
-Tab:AddSlider({
-    Name = "Gravity",
-    Min = 300,                                              -- Minimum value for the slider
-    Max = 5,                                            -- Maximum value for the slider
-    Default = 300,                                         -- Default value of the slider
-    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
-    Callback = function(Value)
-        game.Workspace.Gravity = Value  -- Updates the player's walk speed
-    end
+local Tab = Window:MakeTab({
+    Name = "Player",
+    Icon = "rbxassetid://",                 -- must use image asset id
+    PremiumOnly = false
 })
 
+-- Adding a slider for test
+Tab:AddSlider({
+    Name = "Walk Speed",
+    Min = 36,                                              -- Minimum value for the slider
+    Max = 150,                                            -- Maximum value for the slider
+    Default = 36,                                         -- Default value of the slider
+    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
+    end
+})
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
