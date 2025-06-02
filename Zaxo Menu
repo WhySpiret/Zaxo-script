@@ -12,7 +12,7 @@ local Window = OrionLib:MakeWindow({
 })
 
 local Tab = Window:MakeTab({
-    Name = "Home",
+    Name = "Main",
     Icon = "rbxassetid://140587862516598",                 -- must use image asset id
     PremiumOnly = false
 })
@@ -31,13 +31,13 @@ Tab:AddSlider({
 
 -- Adding a color picker for test
 Tab:AddSlider({
-    Name = "Jump Power",
-    Min = 50,                                              -- Minimum value for the slider
-    Max = 200,                                            -- Maximum value for the slider
-    Default = 50,                                         -- Default value of the slider
+    Name = "Gravity",
+    Min = 300,                                              -- Minimum value for the slider
+    Max = 5,                                            -- Maximum value for the slider
+    Default = 300,                                         -- Default value of the slider
     Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
     Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value  -- Updates the player's walk speed
+        game.Workspace.Gravity = Value  -- Updates the player's walk speed
     end
 })
 
