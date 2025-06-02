@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/DenDenZZZ/Orion-UI-Library/refs/heads/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Zaxo - 1.5",
+    Name = "Zaxo - 2",
     HidePremium = false,
     SaveConfig = false,           
     ConfigFolder = nil,       
@@ -15,18 +15,6 @@ local Tab = Window:MakeTab({
     Name = "Main",
     Icon = "rbxassetid://140587862516598",                 -- must use image asset id
     PremiumOnly = false
-})
-
--- Adding a slider for test
-Tab:AddSlider({
-    Name = "Walk Speed",
-    Min = 36,                                              -- Minimum value for the slider
-    Max = 150,                                            -- Maximum value for the slider
-    Default = 36,                                         -- Default value of the slider
-    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
-    end
 })
 
 local Tab = Window:MakeTab({
@@ -56,8 +44,31 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
 	Name = "Esp",
 	Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp1"))()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp1"))()
   	end    
 })
+
+
+
+
+local SettingsTab = Window:MakeTab({
+	Name = "Settings",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local SettingsSection = SettingsTab:AddSection({
+	Name = "Settings"
+})
+
+SettingsSection:AddButton({
+	Name = "Destroy UI",
+	Callback = function()
+        OrionLib:Destroy()
+  	end    
+})
+
+--Settings End--
+
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
