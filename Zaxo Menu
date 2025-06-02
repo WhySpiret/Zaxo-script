@@ -9,6 +9,15 @@ local Window = OrionLib:MakeWindow({
     IntroEnabled = true,
     IntroText = "Welcome, " .. game.Players.LocalPlayer.Name,
     IntroIcon = "rbxassetid://82778010291487"
+    },
+    KeySystem = false, -- Set this to true to use their key system
+	KeySettings = {
+		Title = "Sirius Hub",
+		Subtitle = "Key System",
+		Note = "Join the discord (discord.gg/sirius)",
+		SaveKey = true,
+		Key = "ABCDEF"
+	}
 })
 
 local Tab = Window:MakeTab({
