@@ -47,18 +47,10 @@ Tab:AddSlider({
     end
 })
 
-PlayerSection:AddButton({
-    Name = "Jump - 50",
-    Callback = function()
-        game.WorkSpace.Gravity = 50
-    end
-})
-
-PlayerSection:AddButton({
-    Name = "Default Jump",
-    Callback = function()
-        game WorkSpace.Gravity = 300
-    end
+local Tab = Window:MakeTab({
+    Name = "Esp",
+    Icon = "rbxassetid://",
+    PremiumOnly = false
 })
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
