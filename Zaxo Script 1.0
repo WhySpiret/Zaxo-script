@@ -50,7 +50,7 @@ Tab:AddSlider({
 Tab:AddButton({
     Name = "Jump - 50",
     Color = Color3.fromRGB(180, 0, 0),
-    Callback = function(50)
+    Callback = function()
         game.WorkSpace.Gravity = 50
     end
 })
@@ -58,9 +58,10 @@ Tab:AddButton({
 Tab:AddButton({
     Name = "Default Jump",
     Color = Color3.fromRGB(180, 0, 0),
-    Callback = function(300)
+    Callback = function()
         game WorkSpace.Gravity = 300
     end
 })
+
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
