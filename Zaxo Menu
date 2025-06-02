@@ -20,8 +20,8 @@ local Tab = Window:MakeTab({
 -- Adding a slider for test
 Tab:AddSlider({
     Name = "Walk Speed",
-    Min = 0,                                              -- Minimum value for the slider
-    Max = 100,                                            -- Maximum value for the slider
+    Min = 36,                                              -- Minimum value for the slider
+    Max = 150,                                            -- Maximum value for the slider
     Default = 36,                                         -- Default value of the slider
     Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
     Callback = function(Value)
@@ -32,8 +32,8 @@ Tab:AddSlider({
 -- Adding a color picker for test
 Tab:AddSlider({
     Name = "Jump Power",
-    Min = 0,                                              -- Minimum value for the slider
-    Max = 100,                                            -- Maximum value for the slider
+    Min = 50,                                              -- Minimum value for the slider
+    Max = 200,                                            -- Maximum value for the slider
     Default = 50,                                         -- Default value of the slider
     Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
     Callback = function(Value)
