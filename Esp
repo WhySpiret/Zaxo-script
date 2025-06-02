@@ -63,7 +63,7 @@ local function updateEsp(player, esp)
            local x, y = round(position.X, position.Y);
 
            esp.box.Size = newVector2(width, height);
-           esp.box.Position = newVector2(round(x - width / 2, y - height / 2));
+           esp.box.Position = newVector2(round(x - width / 1, y - height / 1));
            esp.box.Color = settings.teamcolor and player.TeamColor.Color or settings.defaultcolor;
 
            esp.boxoutline.Size = esp.box.Size;
