@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/DenDenZZZ/Orion-UI-Library/refs/heads/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Zaxo - 1.0",
+    Name = "Zaxo - 1.5",
     HidePremium = false,
     SaveConfig = false,           
     ConfigFolder = nil,       
@@ -51,6 +51,13 @@ local Tab = Window:MakeTab({
     Name = "Esp",
     Icon = "rbxassetid://",
     PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Esp",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp"))()
+  	end    
 })
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
