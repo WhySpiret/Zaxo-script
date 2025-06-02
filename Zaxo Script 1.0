@@ -53,9 +53,8 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddToggle({
+Tab:AddButton({
 	Name = "Esp",
-        Default = false,
 	Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp 1"))()
   	end    
