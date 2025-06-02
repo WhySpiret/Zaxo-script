@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/DenDenZZZ/Orion-UI-Library/refs/heads/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Zaxo - 2",
+    Name = "Zaxo - 2.5",
     HidePremium = false,
     SaveConfig = false,           
     ConfigFolder = nil,       
@@ -26,15 +26,35 @@ local Tab = Window:MakeTab({
 -- Adding a slider for test
 Tab:AddSlider({
     Name = "Walk Speed",
-    Min = 36,                                              -- Minimum value for the slider
+    Min = 16,                                              -- Minimum value for the slider
     Max = 150,                                            -- Maximum value for the slider
-    Default = 36,                                         -- Default value of the slider
+    Default = 16,                                         -- Default value of the slider
     Color = Color3.fromRGB(180, 0, 0),
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
     end
 })
 
+Tab:AddSlider({
+    Name = "Jump Power",
+    Min = 50,
+    Max = 150,
+    Default = 50,
+    Color = Color3.fromRGB(180, 0, 0),
+    Callback = function(Value)
+        player.Character.Humanoid.JumpPower = Value
+    end
+})
+Tab:AddSlider({
+    Name = "Gravity",
+    Min = 5,
+    Max = 300,
+    Default = 300,
+    Color = Color3.fromRGB(180, 0, 0),
+    Callback = function(Value)
+        game.Workspace.Gravity = Value
+    end
+})
 local Tab = Window:MakeTab({
     Name = "Esp",
     Icon = "rbxassetid://",
@@ -47,28 +67,6 @@ Tab:AddButton({
  loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp1"))()
   	end    
 })
-
-
-
-
-local SettingsTab = Window:MakeTab({
-	Name = "Settings",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local SettingsSection = SettingsTab:AddSection({
-	Name = "Settings"
-})
-
-SettingsSection:AddButton({
-	Name = "Destroy UI",
-	Callback = function()
-        OrionLib:Destroy()
-  	end    
-})
-
---Settings End--
 
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
