@@ -47,14 +47,14 @@ Tab:AddSlider({
     end
 })
 
-Tab:AddButton({
+PlayerSection:AddButton({
     Name = "Jump - 50",
     Callback = function()
         game.WorkSpace.Gravity = 50
     end
 })
 
-Tab:AddButton({
+PlayerSection:AddButton({
     Name = "Default Jump",
     Callback = function()
         game WorkSpace.Gravity = 300
