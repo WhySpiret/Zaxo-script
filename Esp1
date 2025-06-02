@@ -1,10 +1,8 @@
 local Esp = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/x114/RobloxScripts/main/OpenSourceEsp"))()
--- Boxes --
 Esp.Box = true
 Esp.BoxColor = Color3.fromRGB(180,0,0)
 Esp.BoxOutline = true
 Esp.BoxOutlineColor = Color3.fromRGB(180,0,0)
--- HealthBars --
 Esp.HealthBar = false
 Esp.HealthBarSide = "Left" -- Left,Bottom,Right
 Esp.Names = true
