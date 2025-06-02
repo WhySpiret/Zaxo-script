@@ -7,7 +7,6 @@ Esp.BoxOutlineColor = Color3.fromRGB(180,0,0)
 -- HealthBars --
 Esp.HealthBar = false
 Esp.HealthBarSide = "Left" -- Left,Bottom,Right
--- Names --
 Esp.Names = true
 Esp.NamesColor = Color3.fromRGB(255,255,255)
 Esp.NamesOutline = true
