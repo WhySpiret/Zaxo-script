@@ -56,7 +56,7 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
 	Name = "Esp",
 	Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp 1"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp"))()
   	end    
 })
 -- Never forget to add this when using Orion Library
