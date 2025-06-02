@@ -1,0 +1,45 @@
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/DenDenZZZ/Orion-UI-Library/refs/heads/main/source')))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "Zaxo",
+    HidePremium = false,
+    SaveConfig = false,           
+    ConfigFolder = nil,       
+    IntroEnabled = true,
+    IntroText = "Welcome, " .. game.Players.LocalPlayer.Name,
+    IntroIcon = "rbxassetid://82778010291487"
+})
+
+local Tab = Window:MakeTab({
+    Name = "Home",
+    Icon = "rbxassetid://140587862516598",                 -- must use image asset id
+    PremiumOnly = false
+})
+
+-- Adding a slider for test
+Tab:AddSlider({
+    Name = "Walk Speed",
+    Min = 0,                                              -- Minimum value for the slider
+    Max = 100,                                            -- Maximum value for the slider
+    Default = 36,                                         -- Default value of the slider
+    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
+    end
+})
+
+-- Adding a color picker for test
+Tab:AddSlider({
+    Name = "Jump Power",
+    Min = 0,                                              -- Minimum value for the slider
+    Max = 100,                                            -- Maximum value for the slider
+    Default = 50,                                         -- Default value of the slider
+    Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value  -- Updates the player's walk speed
+    end
+})
+
+-- Never forget to add this when using Orion Library
+OrionLib:Init()
