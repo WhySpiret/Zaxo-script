@@ -46,6 +46,7 @@ Tab:AddSlider({
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value  -- Updates the player's walk speed
     end
 })
+
 Tab:AddSlider({
     Name = "Jump Power",
     Min = 50,
@@ -54,5 +55,7 @@ Tab:AddSlider({
     Color = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end
+})
 -- Never forget to add this when using Orion Library
 OrionLib:Init()
