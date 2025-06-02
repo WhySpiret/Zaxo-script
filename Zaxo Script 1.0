@@ -53,10 +53,11 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddButton({
+Tab:AddToggle({
 	Name = "Esp",
+        Default = false,
 	Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/refs/heads/main/Esp 1"))()
   	end    
 })
 -- Never forget to add this when using Orion Library
