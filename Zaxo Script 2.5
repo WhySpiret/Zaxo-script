@@ -36,8 +36,26 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local Tab = Window:CreateTab("Main", 4483362458)
+local Tab = Window:CreateTab("Home", 4483362458)
 
 local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = "Our script is simple modifications! And if you play with it, it's your risk, no one is responsible for your thoughts!"})
+
+local Tab = Window:CreateTab("Main",)
+
+local Tab = Window:CreateTab("Player",)
+
+local Slider = Tab:CreateSlider({
+   Name = "Walk Speed",
+   Range = {16, 100},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
+   Flag = "Speed",
+   Callback = function(Value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+local Tab = Window:CreateTab("Esp",)
