@@ -3,19 +3,19 @@ local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 local Window = Rayfield:CreateWindow({
 	Name = "Rayfield Example Window",
 	LoadingTitle = "Rayfield Interface Suite",
-	LoadingSubtitle = "by Sirius",
+	LoadingSubtitle = "by WhySpiret",
 	ConfigurationSaving = {
 		Enabled = true,
 		FolderName = "Rayfield Interface Suite",
 		FileName = "Big Hub"
 	},
-	KeySystem = false, -- Set this to true to use their key system
+	KeySystem = true, -- Set this to true to use their key system
 	KeySettings = {
 		Title = "Sirius Hub",
 		Subtitle = "Key System",
-		Note = "Join the discord (discord.gg/sirius)",
+		Note = "Join the Telegram ...",
 		SaveKey = true,
-		Key = "ABCDEF"
+		Key = "PremiumKeySystem"
 	}
 })
 
