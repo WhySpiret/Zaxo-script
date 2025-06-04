@@ -15,8 +15,7 @@ local Window = Rayfield:CreateWindow({
 		Subtitle = "Key System",
 		Note = "Join the Telegram @...",
 		SaveKey = true,
-		Key = "PremiumKeySystem",
-                Key = "WhySpiretKey"
+		Key = "PremiumKeySystem"
 	}
 })
 
