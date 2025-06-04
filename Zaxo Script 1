@@ -41,7 +41,6 @@ local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"})
-})
 
 local ColorPicker = Tab:CreateColorPicker({
     Name = "Color Picker",
