@@ -42,9 +42,9 @@ local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = "Our script is simple modifications! And if you play with it, it's your risk, no one is responsible for your thoughts!"})
 
-local Tab = Window:CreateTab("Player",)
+local MainTab = Window:CreateTab("Player",)
 
-local Slider = Tab:CreateSlider({
+local Slider = MainTab:CreateSlider({
    Name = "Walk Speed",
    Range = {16, 100},
    Increment = 10,
