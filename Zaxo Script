@@ -50,10 +50,22 @@ local Slider = Tab:CreateSlider({
    Name = "Walk Speed",
    Range = {16, 100},
    Increment = 10,
-   Suffix = "Walk Speed",
+   Suffix = "",
    CurrentValue = 10,
    Flag = "Slider1",
    Callback = function(Value)
        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "Jump Power",
+   Range = {50, 200},
+   Increment = 10,
+   Suffix = "",
+   CurrentValue = 10,
+   Flag = "Slider2",
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
 })
