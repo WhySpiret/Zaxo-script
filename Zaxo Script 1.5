@@ -36,11 +36,11 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Main", 4483362458),
 
-local Section = Tab:CreateSection("Information")
+local Section = Tab:CreateSection("Information"),
 
-local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"})
+local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"}),
 
 local ColorPicker = Tab:CreateColorPicker({
     Name = "Color Picker",
