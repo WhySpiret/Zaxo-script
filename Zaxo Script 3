@@ -42,8 +42,6 @@ local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = "Our script is simple modifications! And if you play with it, it's your risk, no one is responsible for your thoughts!"})
 
-local Tab = Window:CreateTab("Main",)
-
 local Tab = Window:CreateTab("Player",)
 
 local Slider = Tab:CreateSlider({
@@ -57,5 +55,3 @@ local Slider = Tab:CreateSlider({
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
    end
 })
-
-local Tab = Window:CreateTab("Esp",)
