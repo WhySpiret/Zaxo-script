@@ -41,4 +41,3 @@ local Tab = Window:CreateTab("Main", 4483362458)
 local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = "Our script is simple modifications! And if you play with it, it's your risk, no one is responsible for your thoughts!"})
-    end
