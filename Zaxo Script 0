@@ -1,29 +1,29 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Zaxo Script - 1.5",
-	LoadingTitle = "Zaxo loading",
-	LoadingSubtitle = "by WhySpiret",
+	Name = "Rayfield Example Window",
+	LoadingTitle = "Rayfield Interface Suite",
+	LoadingSubtitle = "by Sirius",
 	ConfigurationSaving = {
 		Enabled = true,
-		FolderName = "Zaxo Interface Suite",
-		FileName = "Zaxo Hub"
+		FolderName = "Rayfield Interface Suite",
+		FileName = "Big Hub"
 	},
-	KeySystem = true, -- Set this to true to use their key system
+	KeySystem = false, -- Set this to true to use their key system
 	KeySettings = {
-		Title = "Zaxo Hub",
+		Title = "Sirius Hub",
 		Subtitle = "Key System",
-		Note = "Join the Telegram @...",
+		Note = "Join the discord (discord.gg/sirius)",
 		SaveKey = true,
-		Key = "PremiumKeySystem"
+		Key = "ABCDEF"
 	}
 })
 
 Rayfield:Notify("Title Example", "Content/Description Example", 4483362458) -- Notfication -- Title, Content, Image
 
-local Tab = Window:CreateTab("Test", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
 
-local Section = Tab:CreateSection("Test1")
+local Section = Tab:CreateSection("Section Example")
 
 local Button = Tab:CreateButton({
 	Name = "Button Example",
