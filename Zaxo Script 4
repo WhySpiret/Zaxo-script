@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Zaxo Script",
+   Name = "Zaxo Script - 4",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Zaxo Interface",
    LoadingSubtitle = "by WhySpiret",
@@ -48,8 +48,10 @@ local Slider = Tab:CreateSlider({
    Name = "Walk Speed",
    Range = {16, 100},
    Increment = 10,
-   Suffix = "Bananas",
+   Suffix = "Walk Speed",
    CurrentValue = 10,
-   Flag = "Speed",
+   Flag = "Slider1",
    Callback = function(Value)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end,
+})
