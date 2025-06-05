@@ -74,7 +74,7 @@ local Section = Tab:CreateSection("Fly")
 
 local Button = Tab:CreateButton({
    Name = "Fly Menu",
-   Callback = function(loadstring)
+   Callback = function()
    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Mobile-fly-script-(Arceus-x)-2042"))()
 })
 
@@ -96,7 +96,7 @@ local Section = Tab:CreateSection("Esp")
 
 local Button = Tab:CreateButton({
    Name = "WallHack + NickName",
-   Callback = function(loadstring)
+   Callback = function()
    loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
    end,
 })
