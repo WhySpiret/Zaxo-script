@@ -103,7 +103,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-   Name = "Blue Outline"
+   Name = "Blue Outline",
    Callback = function()
        loadstring(game:HttpGet('https://pastebin.com/raw/7K1Jhmck'))()
    end,
@@ -112,14 +112,14 @@ local Button = Tab:CreateButton({
 local Section = Tab:CreateSection("Menu")
 
 local Button = Tab:CreateButton({
-   Name = "Esp Menu"
+   Name = "Esp Menu",
    Callback = function()
        loadstring(game:HttpGet('https://github.com/WhySpiret/Zaxo-script/blob/main/EspMenu'))()
    end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "Esp Configuration"
+   Name = "Esp Configuration",
    Callback = function()
        loadstring(game:HttpGet(('https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md'))true,)()
    end,
