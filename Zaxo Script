@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "Zaxo Script",
-   Icon = 109251560, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = 1, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Zaxo Interface",
    LoadingSubtitle = "by WhySpiret",
    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -91,13 +91,34 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Tab = Window:CreateTab("Visual", 8395747586)
+local Tab = Window:CreateTab("Esp", 8395747586)
 
-local Section = Tab:CreateSection("Esp")
+local Section = Tab:CreateSection("Menu + Lights")
 
 local Button = Tab:CreateButton({
    Name = "WallHack + NickName",
    Callback = function()
        loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "HighLight"
+   Callback = function()
+       loadstring(game:HttpGet('https://pastebin.com/raw/7K1Jhmck'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Esp Menu"
+   Callback = function()
+       loadstring(game:HttpGet('https://github.com/WhySpiret/Zaxo-script/blob/main/EspMenu'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Esp Configuration"
+   Callback = function()
+       loadstring(game:HttpGet(('https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md'),true))()
    end,
 })
