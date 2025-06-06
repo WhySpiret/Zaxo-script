@@ -36,6 +36,13 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
+Rayfield:Notify({
+   Title = "Telegram",
+   Content = "Visit our telegram channel: @ZaxoScript",
+   Duration = 5,
+   Image = 109251560,
+})
+
 local Tab = Window:CreateTab("Home", 4483362458)
 
 local Section = Tab:CreateSection("Information")
@@ -122,3 +129,4 @@ local Button = Tab:CreateButton({
        loadstring(game:HttpGet(('https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md'),true))()
    end,
 })
+
