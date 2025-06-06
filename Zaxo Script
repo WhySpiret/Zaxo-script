@@ -119,7 +119,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-   Name = "Esp Configuration",
+   Name = "Esp Menu Configuration",
    Callback = function()
        loadstring(game:HttpGet(('https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md'))true,)()
    end,
