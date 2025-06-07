@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "Zaxo Script",
-   Icon = 1, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = 525701437, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Zaxo Interface",
    LoadingSubtitle = "by WhySpiret",
    Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -39,8 +39,8 @@ local Window = Rayfield:CreateWindow({
 Rayfield:Notify({
    Title = "Telegram",
    Content = "Visit our telegram channel: @ZaxoScript",
-   Duration = 15,
-   Image = 525701437,
+   Duration = 5,
+   Image = 0,
 })
 
 local Tab = Window:CreateTab("Home", 4483362458)
