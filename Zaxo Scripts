@@ -39,8 +39,8 @@ local Window = Rayfield:CreateWindow({
 Rayfield:Notify({
    Title = "Telegram",
    Content = "Visit our telegram channel: @ZaxoScript",
-   Duration = 5,
-   Image = 109251560,
+   Duration = 15,
+   Image = 525701437,
 })
 
 local Tab = Window:CreateTab("Home", 4483362458)
