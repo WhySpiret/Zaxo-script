@@ -49,6 +49,10 @@ local Section = Tab:CreateSection("Information")
 
 local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = "Our script is simple modifications! And if you play with it, it's your risk, no one is responsible for your thoughts!"})
 
+local Section = Tab:CreateSection("Links")
+
+local Paragraph = Tab:CreateParagraph({Title = "https://discord.gg/JuuqnjDbHC"})
+
 local Tab = Window:CreateTab("Player", 8395621517)
 
 local Section = Tab:CreateSection("Character")
