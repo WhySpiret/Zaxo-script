@@ -51,7 +51,7 @@ local Paragraph = Tab:CreateParagraph({Title = "!Developer Warning!", Content = 
 
 local Section = Tab:CreateSection("Links")
 
-local Paragraph = Tab:CreateParagraph({Title = "https://discord.gg/JuuqnjDbHC"})
+local Paragraph = Tab:CreateParagraph({Title = "Discord", Content = "https://discord.gg/JuuqnjDbHC"})
 
 local Tab = Window:CreateTab("Player", 8395621517)
 
