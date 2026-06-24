@@ -64,7 +64,7 @@ local Paragraph = Tab:CreateParagraph({Title = "Discord", Content = "https://dis
 
 local Tab = Window:CreateTab("Player", 8395621517)
 
-local Section = Tab:CreateSection("Movement")
+local Section = Tab:CreateSection("Movement", 525701437)
 
 local Input = Tab:CreateInput({
    Name = "Walk Speed",
