@@ -82,14 +82,14 @@ local Input = Tab:CreateInput({
 local Section = Tab:CreateSection("Fly")
 
 local Button = Tab:CreateButton({
-   Name = "Fly Menu",
+   Name = "UniversalGui",
    Callback = function()
-       loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Mobile-fly-script-(Arceus-x)-2042"))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/WhySpiret/Zaxo-script/main/ZaxoFly"))()
    end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "JetPack",
+   Name = "Infinity Jump",
    Callback = function(InfiniteJumpEnabled)
        local InfiniteJumpEnabled = true
        game:GetService("UserInputService").JumpRequest:connect(function()
@@ -105,13 +105,6 @@ local Tab = Window:CreateTab("Esp", 8395747586)
 local Section = Tab:CreateSection("Outline")
 
 local Button = Tab:CreateButton({
-   Name = "White Outline",
-   Callback = function()
-       loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
-   end,
-})
-
-local Button = Tab:CreateButton({
    Name = "Blue Outline",
    Callback = function()
        loadstring(game:HttpGet('https://pastebin.com/raw/7K1Jhmck'))()
@@ -121,14 +114,7 @@ local Button = Tab:CreateButton({
 local Section = Tab:CreateSection("Menu")
 
 local Button = Tab:CreateButton({
-   Name = "Esp Menu",
-   Callback = function()
-       loadstring(game:HttpGet('https://github.com/WhySpiret/Zaxo-script/blob/main/EspMenu'))()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Esp Menu Configuration",
+   Name = "Universal Esp",
    Callback = function()
        loadstring(game:HttpGet(('https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md'),true))()
    end,
