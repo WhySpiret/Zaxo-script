@@ -114,7 +114,7 @@ Tab:CreateToggle({
             end
         end
     end
-end,
+end
 })
 
 local Section = Tab:CreateSection("Menu")
