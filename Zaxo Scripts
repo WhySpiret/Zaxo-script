@@ -117,6 +117,7 @@ Tab:CreateToggle({
 end
 })
 
+local Tab = Window:CreateTab("Esp", )
 local Section = Tab:CreateSection("Menu")
 
 local Button = Tab:CreateButton({
