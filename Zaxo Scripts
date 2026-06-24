@@ -88,15 +88,38 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Button = Tab:CreateButton({
-   Name = "Infinity Jump",
-   Callback = function(InfiniteJumpEnabled)
-       local InfiniteJumpEnabled = true
-       game:GetService("UserInputService").JumpRequest:connect(function()
-	   if InfiniteJumpEnabled then
-	       game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-           end
-       end)
+local Toggle = Tab:CreateToggle({
+   Name = "Noclip",
+   CurrentValue = false,
+   Flag = "Noclip1", 
+   Callback = function(Value)
+      if Value then
+          noclipConnection = RunService.Stepped:Connect(function()
+              local char = player.Character
+              if char then
+                  for _, part in ipairs(char:GetDescendants()) do
+                      if part:IsA("BasePart") and part.CanCollide then
+                          part.CanCollide = false
+                      end
+                  end
+              end
+          end)
+      else
+          if noclipConnection then
+              noclipConnection:Disconnect()
+              noclipConnection = nil
+          end
+          local char = player.Character
+          if char then
+              for _, part in ipairs(char:GetDescendants()) do
+                  if part:IsA("BasePart") then
+                      if part.Name == "HumanoidRootPart" or part.Name == "UpperTorso" or part.Name == "LowerTorso" or part.Name == "Torso" then
+                          part.CanCollide = true
+                      end
+                  end
+              end
+          end
+      end
    end,
 })
 
