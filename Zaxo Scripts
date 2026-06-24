@@ -102,13 +102,19 @@ Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Noclip1",
    Callback = function(Value)
-      shared.noclip = Value
-      if not Value and game.Players.LocalPlayer.Character then
-         for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-            if v:IsA("BasePart") then v.CanCollide = true end
-         end
-      end
-   end,
+    shared.noclip = Value
+    local char = game.Players.LocalPlayer.Character
+    if char then
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            if Value then
+                humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+            else
+                humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+            end
+        end
+    end
+end,
 })
 
 local Section = Tab:CreateSection("Menu")
