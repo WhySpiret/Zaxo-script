@@ -1,5 +1,14 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+shared.noclip = false
+game:GetService("RunService").Stepped:Connect(function()
+    if shared.noclip and game.Players.LocalPlayer.Character then
+        for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v:IsA("BasePart") then v.CanCollide = false end
+        end
+    end
+end)
+
 local Window = Rayfield:CreateWindow({
    Name = "Zaxo Script",
    Icon = 525701437, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -93,25 +102,12 @@ Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Noclip1",
    Callback = function(Value)
-      noclip = Value
-      if not noclip and game.Players.LocalPlayer.Character then
-         for _, part in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-            if part:IsA("BasePart") then
-               part.CanCollide = true
-            end
+      shared.noclip = Value
+      if not Value and game.Players.LocalPlayer.Character then
+         for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v:IsA("BasePart") then v.CanCollide = true end
          end
       end
-   end,
-})
-
-local Tab = Window:CreateTab("Esp", 8395747586)
-
-local Section = Tab:CreateSection("Outline")
-
-local Button = Tab:CreateButton({
-   Name = "Blue Outline",
-   Callback = function()
-       loadstring(game:HttpGet('https://pastebin.com/raw/7K1Jhmck'))()
    end,
 })
 
