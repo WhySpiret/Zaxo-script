@@ -88,37 +88,18 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Toggle = Tab:CreateToggle({
+Tab:CreateToggle({
    Name = "Noclip",
    CurrentValue = false,
-   Flag = "Noclip1", 
+   Flag = "Noclip1",
    Callback = function(Value)
-      if Value then
-          noclipConnection = RunService.Stepped:Connect(function()
-              local char = player.Character
-              if char then
-                  for _, part in ipairs(char:GetDescendants()) do
-                      if part:IsA("BasePart") and part.CanCollide then
-                          part.CanCollide = false
-                      end
-                  end
-              end
-          end)
-      else
-          if noclipConnection then
-              noclipConnection:Disconnect()
-              noclipConnection = nil
-          end
-          local char = player.Character
-          if char then
-              for _, part in ipairs(char:GetDescendants()) do
-                  if part:IsA("BasePart") then
-                      if part.Name == "HumanoidRootPart" or part.Name == "UpperTorso" or part.Name == "LowerTorso" or part.Name == "Torso" then
-                          part.CanCollide = true
-                      end
-                  end
-              end
-          end
+      noclip = Value
+      if not noclip and game.Players.LocalPlayer.Character then
+         for _, part in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then
+               part.CanCollide = true
+            end
+         end
       end
    end,
 })
