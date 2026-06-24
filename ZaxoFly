@@ -1,0 +1,182 @@
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+pcall(function()
+	game.CoreGui.UniverseFly:Destroy()
+end)
+
+local speed = 30
+local flying = false
+local flyConn
+local bv, bg
+
+local controls
+pcall(function()
+	controls = require(player.PlayerScripts:WaitForChild("PlayerModule")):GetControls()
+end)
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "UniverseFly"
+gui.Parent = game.CoreGui
+
+local frame = Instance.new("Frame")
+frame.Parent = gui
+frame.Size = UDim2.new(0,360,0,145)
+frame.Position = UDim2.new(0.3,0,0.25,0)
+frame.BackgroundColor3 = Color3.fromRGB(190,190,190)
+frame.Active = true
+frame.Draggable = true
+
+local function mk(text,x,y,w,h)
+	local b = Instance.new("TextButton")
+	b.Parent = frame
+	b.Text = text
+	b.Size = UDim2.new(0,w,0,h)
+	b.Position = UDim2.new(0,x,0,y)
+	b.BackgroundColor3 = Color3.fromRGB(220,220,220)
+	b.TextScaled = true
+	return b
+end
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(0,260,0,35)
+title.Position = UDim2.new(0,10,0,10)
+title.Text = "Universe Fly"
+title.BackgroundColor3 = Color3.fromRGB(220,220,220)
+
+local minBtn = mk("-",280,10,30,35)
+local closeBtn = mk("X",315,10,35,35)
+local flyBtn = mk("Fly",10,55,340,40)
+local plusBtn = mk("+",10,105,70,30)
+local speedLbl = mk("Speed: 30",90,105,180,30)
+local minusBtn = mk("-",280,105,70,30)
+local openBtn = Instance.new("TextButton", gui)
+openBtn.Size = UDim2.new(0,80,0,35)
+openBtn.Position = frame.Position
+openBtn.Text = "Open"
+openBtn.Visible = false
+openBtn.Active = true
+openBtn.Draggable = true
+openBtn.BackgroundColor3 = Color3.fromRGB(190,190,190)
+
+local function stopFly()
+	flying = false
+	if flyConn then
+		flyConn:Disconnect()
+		flyConn = nil
+	end
+	
+	if bv then bv:Destroy() bv = nil end
+	if bg then bg:Destroy() bg = nil end
+
+	local char = player.Character
+	if char then
+		local humanoid = char:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+		end
+	end
+end
+
+local function startFly()
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hrp = char:WaitForChild("HumanoidRootPart")
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+
+	flying = true
+
+	-- Слегка подбрасываем вверх при старте, чтобы оторвать от земли
+	hrp.CFrame = hrp.CFrame * CFrame.new(0, 3, 0)
+
+	bv = Instance.new("BodyVelocity")
+	bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+	bv.Velocity = Vector3.zero
+	bv.Parent = hrp
+
+	bg = Instance.new("BodyGyro")
+	bg.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+	bg.P = 900000
+	bg.CFrame = hrp.CFrame
+	bg.Parent = hrp
+
+	flyConn = RunService.RenderStepped:Connect(function()
+		if not flying or not hrp then return end
+
+		-- Отключаем бег по земле и переводим гуманоида в режим физики (левитации)
+		if humanoid then
+			humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+		end
+
+		local cam = workspace.CurrentCamera
+		local move = Vector3.zero
+		local moveVector = Vector3.zero
+		
+		if controls then
+			pcall(function()
+				moveVector = controls:GetMoveVector()
+			end)
+		end
+
+		if moveVector.Magnitude > 0 then
+			move = (cam.CFrame.RightVector * moveVector.X) - (cam.CFrame.LookVector * moveVector.Z)
+		else
+			if UIS:IsKeyDown(Enum.KeyCode.W) then move += cam.CFrame.LookVector end
+			if UIS:IsKeyDown(Enum.KeyCode.S) then move -= cam.CFrame.LookVector end
+			if UIS:IsKeyDown(Enum.KeyCode.A) then move -= cam.CFrame.RightVector end
+			if UIS:IsKeyDown(Enum.KeyCode.D) then move += cam.CFrame.RightVector end
+		end
+
+		if move.Magnitude > 0 then
+			bv.Velocity = move.Unit * (speed * 2.5)
+		else
+			bv.Velocity = Vector3.zero
+		end
+		
+		bg.CFrame = CFrame.new(hrp.Position, hrp.Position + cam.CFrame.LookVector)
+	end)
+end
+
+flyBtn.MouseButton1Click:Connect(function()
+	if flying then
+		stopFly()
+	else
+		startFly()
+	end
+end)
+
+plusBtn.MouseButton1Click:Connect(function()
+	speed += 5
+	speedLbl.Text = "Speed: "..speed
+end)
+
+minusBtn.MouseButton1Click:Connect(function()
+	speed = math.max(5, speed - 5)
+	speedLbl.Text = "Speed: "..speed
+end)
+
+minBtn.MouseButton1Click:Connect(function()
+	frame.Visible = false
+	openBtn.Visible = true
+	openBtn.Position = frame.Position
+end)
+
+local openStartPos
+
+openBtn.MouseButton1Down:Connect(function()
+	openStartPos = openBtn.AbsolutePosition
+end)
+
+openBtn.MouseButton1Click:Connect(function()
+	if openStartPos and (openBtn.AbsolutePosition - openStartPos).Magnitude > 5 then
+		return
+	end
+	frame.Visible = true
+	openBtn.Visible = false
+end)
+
+closeBtn.MouseButton1Click:Connect(function()
+	stopFly()
+	gui:Destroy()
+end)
