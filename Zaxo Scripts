@@ -82,13 +82,13 @@ local Input = Tab:CreateInput({
 })
 
 local Input = Tab:CreateInput({
-   Name = "Jump Height",
+   Name = "JumpPower",
    CurrentValue = "50",
    PlaceholderText = "Input Placeholder",
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
-       game.Players.LocalPlayer.Character.Humanoid.JumpHeight = Text
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Text
    end,
 }) 
 
