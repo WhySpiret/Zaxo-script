@@ -1,35 +1,12 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Troll Script | Admin",
-   Icon = 0,
-   LoadingTitle = "Загрузка инструментов...",
-   LoadingSubtitle = "Версия: Release 1.0",
-   ShowText = "Rayfield",
-   Theme = "Ocean",
+   Name = "Zaxo Hub 🚀",
+   Icon = 13735070088,
+   LoadingTitle = "Initializing Zaxo Hub...",
+   LoadingSubtitle = "by Zaxo",
    ToggleUIKeybind = "K",
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false,
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil,
-      FileName = "Big Hub"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "noinvitelink",
-      RememberJoins = true
-   },
-   KeySystem = false,
-   KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key",
-      SaveKey = true,
-      GrabKeyFromSite = false,
-      Key = {"12345"}
-   }
+   KeySystem = false
 })
 
 local Players = game:GetService("Players")
@@ -37,13 +14,13 @@ local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
 local TargetPlayer = nil
 
-local Tab1 = Window:CreateTab("Главная", nil)
-Tab1:CreateLabel("Мы не несём ответственность за ваш бан.")
-Tab1:CreateLabel("Используйте с умом.")
+local Tab1 = Window:CreateTab("Home 🏠", 11388701918)
+Tab1:CreateLabel("Disclaimer: We are not responsible for any bans.")
+Tab1:CreateLabel("Use at your own risk.")
 
-local Tab2 = Window:CreateTab("Троллинг", nil)
+local Tab2 = Window:CreateTab("Trolling 😈", 11397554903)
 local Dropdown = Tab2:CreateDropdown({
-    Name = "Выбор цели",
+    Name = "Select Target 🎯",
     Options = {},
     Callback = function(Option)
         TargetPlayer = Players:FindFirstChild(Option)
@@ -57,85 +34,79 @@ task.spawn(function()
             if p ~= LocalPlayer then table.insert(names, p.Name) end
         end
         Dropdown:Refresh(names, true)
-        task.wait(5)
+        task.wait(2)
     end
 end)
 
 Tab2:CreateButton({
-    Name = "Флинг игрока",
+    Name = "Fling Target 🌪️",
     Callback = function()
         if TargetPlayer and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("HumanoidRootPart") then
             local hrp = LocalPlayer.Character.HumanoidRootPart
             local targetHrp = TargetPlayer.Character.HumanoidRootPart
-            for i = 1, 50 do
-                hrp.CFrame = targetHrp.CFrame * CFrame.new(0, 0, 0.5)
+            local oldCFrame = hrp.CFrame
+            for i = 1, 10 do
+                hrp.CFrame = targetHrp.CFrame * CFrame.new(0, 0, 0)
                 task.wait()
             end
+            hrp.CFrame = oldCFrame
         end
     end
 })
 
-local Tab3 = Window:CreateTab("Характер", nil)
+local Tab3 = Window:CreateTab("Character 🏃", 11388703487)
 local flying = false
-Tab3:CreateToggle({Name = "Полет", Callback = function(v)
-    flying = v
-    if flying then
-        local bv = Instance.new("BodyVelocity", LocalPlayer.Character.HumanoidRootPart)
-        bv.Name = "FlightVelocity"
-        bv.MaxForce = Vector3.new(100000, 100000, 100000)
-        bv.Velocity = Vector3.new(0, 0, 0)
-    else
-        LocalPlayer.Character.HumanoidRootPart:FindFirstChild("FlightVelocity"):Destroy()
+local bv
+
+Tab3:CreateToggle({
+    Name = "Fly ✈️", 
+    Callback = function(v)
+        flying = v
+        if flying then
+            bv = Instance.new("BodyVelocity", LocalPlayer.Character.HumanoidRootPart)
+            bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+            bv.Velocity = Vector3.new(0, 30, 0)
+        else
+            if bv then bv:Destroy() end
+        end
     end
-end})
+})
 
 local noclip = false
 RunService.Stepped:Connect(function()
     if noclip and LocalPlayer.Character then
         for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
-            if part:IsA("BasePart") then part.CanCollide = false end
-        end
-    end
-end)
-Tab3:CreateToggle({Name = "Ноуклип", Callback = function(v) noclip = v end})
-
-local canJump = true
-game:GetService("UserInputService").JumpRequest:Connect(function()
-    if flying or not canJump then return end
-    LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
-end)
-Tab3:CreateToggle({Name = "Аир Джамп", Callback = function(v) canJump = v end})
-
-local Tab4 = Window:CreateTab("ЕСП", nil)
-local ESPEnabled = false
-
-local function createESP(player)
-    if not player.Character then return end
-    local highlight = Instance.new("Highlight", player.Character)
-    highlight.Name = "ESP_Highlight"
-    return highlight
-end
-
-Tab4:CreateSection("Общий ЕСП")
-Tab4:CreateToggle({Name = "Включить ESP на всех", Callback = function(v)
-    ESPEnabled = v
-    if v then
-        for _, p in pairs(Players:GetPlayers()) do
-            if p ~= LocalPlayer then createESP(p) end
-        end
-    else
-        for _, p in pairs(Players:GetPlayers()) do
-            if p.Character and p.Character:FindFirstChild("ESP_Highlight") then
-                p.Character.ESP_Highlight:Destroy()
+            if part:IsA("BasePart") and part.CanCollide then 
+                part.CanCollide = false 
             end
         end
     end
-end})
+end)
+Tab3:CreateToggle({Name = "Noclip 👻", Callback = function(v) noclip = v end})
 
-Tab4:CreateColorPicker({Name = "Цвет ESP", Color = Color3.fromRGB(255, 0, 0), Callback = function(c)
+local airJump = false
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if airJump then
+        LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+    end
+end)
+Tab3:CreateToggle({Name = "Air Jump ☁️", Callback = function(v) airJump = v end})
+
+local Tab4 = Window:CreateTab("ESP 👁️", 11388704257)
+
+Tab4:CreateToggle({Name = "Enable ESP 🌟", Callback = function(v)
     for _, p in pairs(Players:GetPlayers()) do
-        if p.Character and p.Character:FindFirstChild("ESP_Highlight") then
-            p.Character.ESP_Highlight.FillColor = c
+        if p ~= LocalPlayer and p.Character then
+            local highlight = p.Character:FindFirstChild("ZaxoESP")
+            if v then
+                if not highlight then
+                    highlight = Instance.new("Highlight", p.Character)
+                    highlight.Name = "ZaxoESP"
+                    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                end
+            else
+                if highlight then highlight:Destroy() end
+            end
         end
     end
 end})
