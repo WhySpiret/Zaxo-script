@@ -12,6 +12,8 @@ local Window = Rayfield:CreateWindow({
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Camera = workspace.CurrentCamera
 local TargetPlayer = nil
 
 local Tab1 = Window:CreateTab("Home 🏠")
@@ -56,19 +58,55 @@ Tab2:CreateButton({
 
 local Tab3 = Window:CreateTab("Character 🏃")
 local flying = false
-local bv
+local flySpeed = 50
 
 Tab3:CreateToggle({
     Name = "Fly ✈️", 
     Callback = function(v)
         flying = v
-        if flying then
-            bv = Instance.new("BodyVelocity", LocalPlayer.Character.HumanoidRootPart)
-            bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-            bv.Velocity = Vector3.new(0, 30, 0)
-        else
-            if bv then bv:Destroy() end
-        end
+    end
+})
+
+Tab3:CreateSlider({
+    Name = "Fly Speed",
+    Range = {1, 200},
+    Increment = 5,
+    CurrentValue = 50,
+    Callback = function(v)
+        flySpeed = v
+    end
+})
+
+RunService.RenderStepped:Connect(function()
+    if flying and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        local hrp = LocalPlayer.Character.HumanoidRootPart
+        local moveDir = Vector3.new(0, 0, 0)
+        if UserInputService:IsKeyDown(Enum.KeyCode.W) then moveDir = moveDir + Camera.CFrame.LookVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.S) then moveDir = moveDir - Camera.CFrame.LookVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.A) then moveDir = moveDir - Camera.CFrame.RightVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.D) then moveDir = moveDir + Camera.CFrame.RightVector end
+        
+        local thumbstick = LocalPlayer.Character.Humanoid.MoveDirection
+        if thumbstick.Magnitude > 0 then moveDir = thumbstick end
+        
+        hrp.Velocity = moveDir * flySpeed
+    end
+end)
+
+Tab3:CreateInput({
+    Name = "WalkSpeed",
+    PlaceholderText = "16",
+    Callback = function(v)
+        LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(v) or 16
+    end
+})
+
+Tab3:CreateInput({
+    Name = "JumpPower",
+    PlaceholderText = "50",
+    Callback = function(v)
+        LocalPlayer.Character.Humanoid.UseJumpPower = true
+        LocalPlayer.Character.Humanoid.JumpPower = tonumber(v) or 50
     end
 })
 
@@ -93,12 +131,25 @@ end)
 Tab3:CreateToggle({Name = "Air Jump ☁️", Callback = function(v) airJump = v end})
 
 local Tab4 = Window:CreateTab("ESP 👁️")
+local espEnabled = false
+local espBox = false
+local espTracer = false
+local espHighlight = false
+local espName = false
+local espDist = false
 
-Tab4:CreateToggle({Name = "Enable ESP 🌟", Callback = function(v)
+Tab4:CreateToggle({Name = "Enable ESP 🌟", Callback = function(v) espEnabled = v end})
+Tab4:CreateToggle({Name = "Box", Callback = function(v) espBox = v end})
+Tab4:CreateToggle({Name = "Tracers", Callback = function(v) espTracer = v end})
+Tab4:CreateToggle({Name = "Highlight", Callback = function(v) espHighlight = v end})
+Tab4:CreateToggle({Name = "Names", Callback = function(v) espName = v end})
+Tab4:CreateToggle({Name = "Distance", Callback = function(v) espDist = v end})
+
+RunService.RenderStepped:Connect(function()
     for _, p in pairs(Players:GetPlayers()) do
-        if p ~= LocalPlayer and p.Character then
+        if p ~= LocalPlayer and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
             local highlight = p.Character:FindFirstChild("ZaxoESP")
-            if v then
+            if espEnabled and espHighlight then
                 if not highlight then
                     highlight = Instance.new("Highlight", p.Character)
                     highlight.Name = "ZaxoESP"
@@ -109,6 +160,6 @@ Tab4:CreateToggle({Name = "Enable ESP 🌟", Callback = function(v)
             end
         end
     end
-end})
+end)
 
 Rayfield:LoadConfiguration()
