@@ -1,10 +1,10 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Zaxo Hub 🚀",
+   Name = "ZaxoHub 🚀",
    Icon = 13735070088,
    LoadingTitle = "Initializing Zaxo Hub...",
-   LoadingSubtitle = "by Zaxo",
+   LoadingSubtitle = "by ZaxoStudio",
    ToggleUIKeybind = "K",
    KeySystem = false
 })
@@ -14,11 +14,11 @@ local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
 local TargetPlayer = nil
 
-local Tab1 = Window:CreateTab("Home 🏠", 11388701918)
+local Tab1 = Window:CreateTab("Home 🏠")
 Tab1:CreateLabel("Disclaimer: We are not responsible for any bans.")
 Tab1:CreateLabel("Use at your own risk.")
 
-local Tab2 = Window:CreateTab("Trolling 😈", 11397554903)
+local Tab2 = Window:CreateTab("Trolling 😈")
 local Dropdown = Tab2:CreateDropdown({
     Name = "Select Target 🎯",
     Options = {},
@@ -54,7 +54,7 @@ Tab2:CreateButton({
     end
 })
 
-local Tab3 = Window:CreateTab("Character 🏃", 11388703487)
+local Tab3 = Window:CreateTab("Character 🏃")
 local flying = false
 local bv
 
@@ -92,7 +92,7 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
 end)
 Tab3:CreateToggle({Name = "Air Jump ☁️", Callback = function(v) airJump = v end})
 
-local Tab4 = Window:CreateTab("ESP 👁️", 11388704257)
+local Tab4 = Window:CreateTab("ESP 👁️")
 
 Tab4:CreateToggle({Name = "Enable ESP 🌟", Callback = function(v)
     for _, p in pairs(Players:GetPlayers()) do
