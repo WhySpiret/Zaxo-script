@@ -77,7 +77,7 @@ local Input = Tab:CreateInput({
 
    while true do
    wait(0.001)
-   player.Character.Humanoid.WapkSpeed = Text
+   player.Character.Humanoid.WalkSpeed = Text
    end,
 })
 
