@@ -1,43 +1,143 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Library/Rayfield/main/source.lua'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local enteredKey = Rayfield:PromptKey("Введите ключ доступа")
-if enteredKey ~= "12345" then
-    game.Players.LocalPlayer:Kick("Неверный ключ!")
-    return
-end
+local Window = Rayfield:CreateWindow({
+   Name = "Troll Script | Admin",
+   Icon = 0,
+   LoadingTitle = "Загрузка инструментов...",
+   LoadingSubtitle = "Версия: Release 1.0",
+   ShowText = "Rayfield",
+   Theme = "Ocean",
+   ToggleUIKeybind = "K",
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false,
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil,
+      FileName = "Big Hub"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
+   },
+   KeySystem = false,
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key",
+      SaveKey = true,
+      GrabKeyFromSite = false,
+      Key = {"12345"}
+   }
+})
 
-local Window = Rayfield:CreateWindow({Name = "Troll Script | Admin"})
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local TargetPlayer = nil
 
 local Tab1 = Window:CreateTab("Главная", nil)
 Tab1:CreateLabel("Мы не несём ответственность за ваш бан.")
 Tab1:CreateLabel("Используйте с умом.")
 
 local Tab2 = Window:CreateTab("Троллинг", nil)
-Tab2:CreateDropdown({
+local Dropdown = Tab2:CreateDropdown({
     Name = "Выбор цели",
     Options = {},
-    Callback = function(Value) _G.Target = Value end
+    Callback = function(Option)
+        TargetPlayer = Players:FindFirstChild(Option)
+    end
 })
+
+task.spawn(function()
+    while true do
+        local names = {}
+        for _, p in pairs(Players:GetPlayers()) do
+            if p ~= LocalPlayer then table.insert(names, p.Name) end
+        end
+        Dropdown:Refresh(names, true)
+        task.wait(5)
+    end
+end)
 
 Tab2:CreateButton({
     Name = "Флинг игрока",
     Callback = function()
-        
+        if TargetPlayer and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local hrp = LocalPlayer.Character.HumanoidRootPart
+            local targetHrp = TargetPlayer.Character.HumanoidRootPart
+            for i = 1, 50 do
+                hrp.CFrame = targetHrp.CFrame * CFrame.new(0, 0, 0.5)
+                task.wait()
+            end
+        end
     end
 })
 
 local Tab3 = Window:CreateTab("Характер", nil)
-Tab3:CreateToggle({Name = "Полет", Callback = function(v) end})
-Tab3:CreateToggle({Name = "Ноуклип", Callback = function(v) end})
-Tab3:CreateToggle({Name = "Аир Джамп", Callback = function(v) end})
+local flying = false
+Tab3:CreateToggle({Name = "Полет", Callback = function(v)
+    flying = v
+    if flying then
+        local bv = Instance.new("BodyVelocity", LocalPlayer.Character.HumanoidRootPart)
+        bv.Name = "FlightVelocity"
+        bv.MaxForce = Vector3.new(100000, 100000, 100000)
+        bv.Velocity = Vector3.new(0, 0, 0)
+    else
+        LocalPlayer.Character.HumanoidRootPart:FindFirstChild("FlightVelocity"):Destroy()
+    end
+end})
+
+local noclip = false
+RunService.Stepped:Connect(function()
+    if noclip and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then part.CanCollide = false end
+        end
+    end
+end)
+Tab3:CreateToggle({Name = "Ноуклип", Callback = function(v) noclip = v end})
+
+local canJump = true
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if flying or not canJump then return end
+    LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+end)
+Tab3:CreateToggle({Name = "Аир Джамп", Callback = function(v) canJump = v end})
 
 local Tab4 = Window:CreateTab("ЕСП", nil)
-Tab4:CreateSection("Общий ЕСП")
-Tab4:CreateToggle({Name = "Включить ЕСП", Callback = function(v) end})
-Tab4:CreateColorPicker({Name = "Цвет боксов", Color = Color3.fromRGB(255,255,255), Callback = function(c) end})
+local ESPEnabled = false
 
-Tab4:CreateSection("Отдельный ЕСП")
-Tab4:CreateDropdown({Name = "Выбрать игрока", Options = {}, Callback = function(v) end})
-Tab4:CreateColorPicker({Name = "Цвет отдельного", Color = Color3.fromRGB(255,0,0), Callback = function(c) end})
+local function createESP(player)
+    if not player.Character then return end
+    local highlight = Instance.new("Highlight", player.Character)
+    highlight.Name = "ESP_Highlight"
+    return highlight
+end
+
+Tab4:CreateSection("Общий ЕСП")
+Tab4:CreateToggle({Name = "Включить ESP на всех", Callback = function(v)
+    ESPEnabled = v
+    if v then
+        for _, p in pairs(Players:GetPlayers()) do
+            if p ~= LocalPlayer then createESP(p) end
+        end
+    else
+        for _, p in pairs(Players:GetPlayers()) do
+            if p.Character and p.Character:FindFirstChild("ESP_Highlight") then
+                p.Character.ESP_Highlight:Destroy()
+            end
+        end
+    end
+end})
+
+Tab4:CreateColorPicker({Name = "Цвет ESP", Color = Color3.fromRGB(255, 0, 0), Callback = function(c)
+    for _, p in pairs(Players:GetPlayers()) do
+        if p.Character and p.Character:FindFirstChild("ESP_Highlight") then
+            p.Character.ESP_Highlight.FillColor = c
+        end
+    end
+end})
 
 Rayfield:LoadConfiguration()
