@@ -1,1 +1,43 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Library/Rayfield/main/source.lua'))()
 
+local enteredKey = Rayfield:PromptKey("Введите ключ доступа")
+if enteredKey ~= "12345" then
+    game.Players.LocalPlayer:Kick("Неверный ключ!")
+    return
+end
+
+local Window = Rayfield:CreateWindow({Name = "Troll Script | Admin"})
+
+local Tab1 = Window:CreateTab("Главная", nil)
+Tab1:CreateLabel("Мы не несём ответственность за ваш бан.")
+Tab1:CreateLabel("Используйте с умом.")
+
+local Tab2 = Window:CreateTab("Троллинг", nil)
+Tab2:CreateDropdown({
+    Name = "Выбор цели",
+    Options = {},
+    Callback = function(Value) _G.Target = Value end
+})
+
+Tab2:CreateButton({
+    Name = "Флинг игрока",
+    Callback = function()
+        
+    end
+})
+
+local Tab3 = Window:CreateTab("Характер", nil)
+Tab3:CreateToggle({Name = "Полет", Callback = function(v) end})
+Tab3:CreateToggle({Name = "Ноуклип", Callback = function(v) end})
+Tab3:CreateToggle({Name = "Аир Джамп", Callback = function(v) end})
+
+local Tab4 = Window:CreateTab("ЕСП", nil)
+Tab4:CreateSection("Общий ЕСП")
+Tab4:CreateToggle({Name = "Включить ЕСП", Callback = function(v) end})
+Tab4:CreateColorPicker({Name = "Цвет боксов", Color = Color3.fromRGB(255,255,255), Callback = function(c) end})
+
+Tab4:CreateSection("Отдельный ЕСП")
+Tab4:CreateDropdown({Name = "Выбрать игрока", Options = {}, Callback = function(v) end})
+Tab4:CreateColorPicker({Name = "Цвет отдельного", Color = Color3.fromRGB(255,0,0), Callback = function(c) end})
+
+Rayfield:LoadConfiguration()
