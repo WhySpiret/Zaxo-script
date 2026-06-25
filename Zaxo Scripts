@@ -73,7 +73,7 @@ local Input = Tab:CreateInput({
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
-   local player = game.Players.LocalPlayer
+       game.Players.LocalPlayer
 
    while true do
    wait(0.001)
