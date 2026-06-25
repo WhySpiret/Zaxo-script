@@ -73,18 +73,22 @@ local Input = Tab:CreateInput({
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
-       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Text
+   local player = game.Players.LocalPlayer
+
+   while true do
+   wait(0.001)
+   player.Character.Humanoid.WapkSpeed = Text
    end,
 })
 
 local Input = Tab:CreateInput({
-   Name = "Jump Power",
+   Name = "Jump Height",
    CurrentValue = "50",
    PlaceholderText = "Input Placeholder",
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
-       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Text
+       game.Players.LocalPlayer.Character.Humanoid.JumpHeight = Text
    end,
 }) 
 
