@@ -2,11 +2,11 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "ZaxoHub 🚀",
-   Icon = 13735070088,
+   Icon = 0,
    LoadingTitle = "Initializing Zaxo Hub...",
    LoadingSubtitle = "by ZaxoStudio",
    ToggleUIKeybind = "K",
-   KeySystem = false
+   KeySystem = true
 })
 
 local Players = game:GetService("Players")
