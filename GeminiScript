@@ -157,8 +157,6 @@ RunService.RenderStepped:Connect(function()
                 end
             else
                 if highlight then highlight:Destroy() end
-            end
-        end
-    end
-end)
+            end,
+})
 
