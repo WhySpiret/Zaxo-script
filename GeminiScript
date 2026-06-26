@@ -6,7 +6,7 @@ local Window = Rayfield:CreateWindow({
    LoadingTitle = "Initializing Zaxo Hub...",
    LoadingSubtitle = "by ZaxoStudio",
    ToggleUIKeybind = "K",
-   KeySystem = true
+   KeySystem = false
 })
 
 local Players = game:GetService("Players")
