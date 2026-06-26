@@ -73,9 +73,7 @@ local Input = Tab:CreateInput({
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
-   while true do
-   wait(0.001)
-   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Text
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Text
    end,
 })
 
