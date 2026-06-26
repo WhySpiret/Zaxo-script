@@ -162,4 +162,3 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
-Rayfield:LoadConfiguration()
